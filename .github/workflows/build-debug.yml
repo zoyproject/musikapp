@@ -1,11 +1,16 @@
 name: Build Debug APK
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      METROLIST_APP_NAME: Musicplay
+      METROLIST_BUILD_COMMIT: ${{ github.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,11 +29,20 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build debug APK
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Build FOSS debug APK
         run: ./gradlew assembleFossDebug --no-daemon
+
+      - name: Verify APK
+        run: |
+          test -n "$(find app/build/outputs/apk/foss/debug -name '*.apk' -print -quit)"
+          find app/build/outputs/apk/foss/debug -name '*.apk' -type f -print
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: musikku-debug
+          name: musicplay-debug
           path: app/build/outputs/apk/foss/debug/*.apk
+          if-no-files-found: error
