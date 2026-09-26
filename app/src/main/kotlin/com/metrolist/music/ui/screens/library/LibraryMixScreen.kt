@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -482,7 +483,7 @@ fun LibraryMixScreen(
                                         .fillMaxWidth()
                                         .clickable {
                                             navController.navigate("auto_playlist/liked")
-                                        }.animateItem(),
+                                        }.clip(RoundedCornerShape(10.dp)).animateItem(),
                             )
                         }
                     }
@@ -501,7 +502,7 @@ fun LibraryMixScreen(
                                         .clickable {
                                             navController.navigate("auto_playlist/downloaded")
                                         }
-                                        .animateItem(),
+                                        .clip(RoundedCornerShape(10.dp)).animateItem(),
                             )
                         }
                     }
@@ -520,7 +521,7 @@ fun LibraryMixScreen(
                                     .clickable {
                                         navController.navigate("cache_playlist/cached")
                                     }
-                                    .animateItem(),
+                                    .clip(RoundedCornerShape(10.dp)).animateItem(),
                             )
                         }
                     }
@@ -538,7 +539,7 @@ fun LibraryMixScreen(
                                         .fillMaxWidth()
                                         .clickable {
                                             navController.navigate("top_playlist/$topSize")
-                                        }.animateItem(),
+                                        }.clip(RoundedCornerShape(10.dp)).animateItem(),
                             )
                         }
                     }
@@ -556,7 +557,7 @@ fun LibraryMixScreen(
                                         .fillMaxWidth()
                                         .clickable {
                                             navController.navigate("auto_playlist/uploaded")
-                                        }.animateItem(),
+                                        }.clip(RoundedCornerShape(10.dp)).animateItem(),
                             )
                         }
                     }
