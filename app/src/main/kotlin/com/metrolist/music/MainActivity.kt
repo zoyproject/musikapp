@@ -402,14 +402,12 @@ class MainActivity : FragmentActivity() {
         // Initialize Listen Together manager
         listenTogetherManager.initialize()
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            val locale =
-                dataStore[AppLanguageKey]
-                    ?.takeUnless { it == SYSTEM_DEFAULT }
-                    ?.let { Locale.forLanguageTag(it) }
-                    ?: Locale.getDefault()
-            setAppLocale(this, locale)
-        }
+        val locale =
+            dataStore[AppLanguageKey]
+                ?.takeUnless { it == SYSTEM_DEFAULT }
+                ?.let { Locale.forLanguageTag(it) }
+                ?: Locale.forLanguageTag("id")
+        setAppLocale(this, locale)
 
         lifecycleScope.launch {
             dataStore.data
