@@ -15,6 +15,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -117,7 +118,7 @@ fun AppNavigationRail(
                     // Long presses are handled via InteractionSource
                 },
                 interactionSource = interactionSource,
-                colors = NavigationBarItemDefaults.colors(
+                colors = NavigationRailItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     indicatorColor = MaterialTheme.colorScheme.primaryContainer,
@@ -207,6 +208,13 @@ fun AppNavigationBar(
                     // Long presses are handled via InteractionSource
                 },
                 interactionSource = interactionSource,
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    unselectedIconColor = contentColor,
+                    unselectedTextColor = contentColor
+                ),
                 icon = {
                     Icon(
                         painter = painterResource(id = iconRes),
