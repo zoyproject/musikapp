@@ -643,37 +643,6 @@ fun DailyDiscoverCard(
     }
 }
 
-@Composable
-private fun MusicplayHomeHeader() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 10.dp)
-            .clip(RoundedCornerShape(28.dp))
-            .background(
-                Brush.linearGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.tertiary
-                    )
-                )
-            )
-            .padding(horizontal = 20.dp, vertical = 18.dp)
-    ) {
-        Text(
-            text = stringResource(R.string.good_morning),
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
-        Text(
-            text = stringResource(R.string.home_subtitle),
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color.White.copy(alpha = 0.82f)
-        )
-    }
-}
-
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun HomeScreen(
@@ -1221,10 +1190,6 @@ fun HomeScreen(
                 state = lazylistState,
                 contentPadding = LocalPlayerAwareWindowInsets.current.asPaddingValues(),
             ) {
-                item(key = "musicplay_header") {
-                    MusicplayHomeHeader()
-                }
-
                 item {
                     ChipsRow(
                         chips = homePage?.chips?.map { it to it.title } ?: emptyList(),
@@ -2505,7 +2470,8 @@ fun HomeScreen(
                                                 modifier =
                                                     Modifier
                                                         .padding(6.dp)
-                                                        .width(180.dp),
+                                                        .width(180.dp)
+                                                        .clip(RoundedCornerShape(10.dp)),
                                             )
                                         }
                                     }
