@@ -202,12 +202,6 @@ private fun DeveloperSocials(
         ) {
             Icon(painterResource(R.drawable.github), contentDescription = null)
         }
-        FilledTonalButton(
-            onClick = { uriHandler.openUri("https://github.com/zoyproject/musikapp/issues") },
-            modifier = Modifier.weight(1f).height(48.dp)
-        ) {
-            Icon(painterResource(R.drawable.instagram), contentDescription = null)
-        }
     }
 }
 
