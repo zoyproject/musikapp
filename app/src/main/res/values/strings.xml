@@ -9,6 +9,8 @@
 <resources>
     <!-- Bottom navigation -->
     <string name="home">Home</string>
+    <string name="good_morning">Good morning,</string>
+    <string name="home_subtitle">Enjoy your day with great music</string>
     <string name="songs">Songs</string>
     <string name="artists">Artists</string>
     <string name="albums">Albums</string>
@@ -338,6 +340,7 @@
     <string name="preview">Preview</string>
 
     <string name="about">About</string>
+    <string name="credits_musicplay_creator">Musicplay creator</string>
     <string name="app_version">App version</string>
 
     <string name="new_version_available">New version available</string>
