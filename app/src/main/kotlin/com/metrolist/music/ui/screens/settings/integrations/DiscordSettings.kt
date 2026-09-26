@@ -146,7 +146,7 @@ fun DiscordSettings(
     val (btn1Enabled, onBtn1EnabledChange) = rememberPreference(DiscordButton1EnabledKey, true)
     val (btn1Label, onBtn1LabelChange) = rememberPreference(DiscordButton1LabelKey, DiscordDefaults.BUTTON1_LABEL)
     val (btn1Url, onBtn1UrlChange) = rememberPreference(DiscordButton1UrlKey, DiscordDefaults.BUTTON1_URL_TEMPLATE)
-    val (btn2Enabled, onBtn2EnabledChange) = rememberPreference(DiscordButton2EnabledKey, true)
+    val (btn2Enabled, onBtn2EnabledChange) = rememberPreference(DiscordButton2EnabledKey, false)
     val (btn2Label, onBtn2LabelChange) = rememberPreference(DiscordButton2LabelKey, DiscordDefaults.BUTTON2_LABEL)
     val (btn2Url, onBtn2UrlChange) = rememberPreference(DiscordButton2UrlKey, DiscordDefaults.BUTTON2_URL)
     val (userStatus, onUserStatusChange) = rememberPreference(DiscordUserStatusKey, DiscordDefaults.USER_STATUS)
@@ -957,7 +957,7 @@ fun RichPresence(
     btn1Enabled: Boolean = true,
     btn2Label: String = DiscordDefaults.BUTTON2_LABEL,
     btn2Url: String = DiscordDefaults.BUTTON2_URL,
-    btn2Enabled: Boolean = true,
+    btn2Enabled: Boolean = false,
 ) {
     val context = LocalContext.current
 
