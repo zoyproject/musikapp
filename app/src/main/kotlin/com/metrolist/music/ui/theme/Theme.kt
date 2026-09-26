@@ -1,6 +1,8 @@
 /**
  * Metrolist Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
+ *
+ * Musicplay rebrand by zoy (Zidni): default purple palette (#4B0082 / #6E00DB)
  */
 
 package com.metrolist.music.ui.theme
@@ -25,7 +27,8 @@ import com.materialkolor.dynamiccolor.ColorSpec
 import com.materialkolor.rememberDynamicColorScheme
 import com.materialkolor.score.Score
 
-val DefaultThemeColor = Color(0xFFED5564)
+val DefaultThemeColor = Color(0xFF4B0082)
+val MusicplayDarkPurple = Color(0xFF6E00DB)
 
 @Composable
 fun MetrolistTheme(
@@ -35,24 +38,27 @@ fun MetrolistTheme(
     content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
-    // Determine if system dynamic colors should be used (Android S+ and default theme color)
-    val useSystemDynamicColor = (themeColor == DefaultThemeColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+    // Musicplay: default = pasangan ungu kita (light #4B0082 / dark #6E00DB).
+    // Kalau user memilih preset warna lain di Settings, preset itu tetap dihormati.
+    val seed = if (themeColor != DefaultThemeColor) {
+        themeColor
+    } else {
+        if (darkTheme) MusicplayDarkPurple else DefaultThemeColor
+    }
+    // Matikan dynamic color wallpaper biar identitas ungu Musicplay konsisten
+    val useSystemDynamicColor = false
 
-    // Select the appropriate color scheme generation method
     val baseColorScheme = if (useSystemDynamicColor) {
-        // Use standard Material 3 dynamic color functions for system wallpaper colors
         if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else {
-        // Use materialKolor only when a specific seed color is provided
         rememberDynamicColorScheme(
-            seedColor = themeColor, // themeColor is guaranteed non-default here
+            seedColor = seed,
             isDark = darkTheme,
             specVersion = ColorSpec.SpecVersion.SPEC_2025,
-            style = PaletteStyle.TonalSpot // Keep existing style
+            style = PaletteStyle.TonalSpot
         )
     }
 
-    // Apply pureBlack modification if needed, similar to original logic
     val colorScheme = remember(baseColorScheme, pureBlack, darkTheme) {
         if (darkTheme && pureBlack) {
             baseColorScheme.pureBlack(true)
@@ -61,7 +67,6 @@ fun MetrolistTheme(
         }
     }
 
-    // Use standard MaterialTheme instead of MaterialExpressiveTheme
     MaterialTheme(
         colorScheme = colorScheme,
         content = content,
@@ -94,5 +99,5 @@ fun ColorScheme.pureBlack(apply: Boolean) =
 
 val ColorSaver = object : Saver<Color, Int> {
     override fun restore(value: Int): Color = Color(value)
-    override fun SaverScope.save(value: Color): Int = value.toArgb()
+    override fun SaverScope.save(value: Int): Int = value
 }
